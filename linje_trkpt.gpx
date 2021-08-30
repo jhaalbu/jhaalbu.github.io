@@ -1,5 +1,9 @@
 <?xml version="1.0" ?>
 <gpx creator="Esri" version="1.1" xalan="http://xml.apache.org/xalan" xmlns="http://www.topografix.com/GPX/1/1" xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <trk>
+  <name>Hodlekve rundt</name>
+  <type>9</type>
+  <trkseg>
   <trkpt lat="61.28936388504702" lon="6.96870859649322">
     <ele>603.0</ele>
     <name> </name>
@@ -10775,4 +10779,6 @@
     <name> </name>
     <desc> </desc>
   </trkpt>
+  </trkseg>
+ </trk>
 </gpx>
