@@ -74,7 +74,7 @@ view.ui.add(elevationProfile, "top-right");
     elevationInfo: {
       mode: "relative-to-ground",
       featureExpressionInfo: {
-        expression: "5"
+        expression: "40"
       }
     },
     listMode: "hide",
