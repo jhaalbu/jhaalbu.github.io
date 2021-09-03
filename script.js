@@ -22,11 +22,11 @@ const view = new SceneView({
   qualityProfile: "high",
   camera: {
     position: [
-      6.95963097,
-      61.95510108,
+      7.0327145,
+      61.2920237,
       8096.99619
     ],
-    heading: 359.07,
+    heading: 270.07,
     tilt: 69.62
   },
   environment: {
@@ -56,7 +56,7 @@ view.ui.add(elevationProfile, "top-right");
 
 (async () => {
   // read the gpx file and convert it to geojson
-  const response = await fetch("./hr_gpx_Export.gpx");
+  const response = await fetch("./hr_gpx.gpx");
   const gpxcontent = await response.text();
   const geojson = gpx(new DOMParser().parseFromString(gpxcontent, "text/xml"));
   const heartRates = geojson.features[0].properties.coordinateProperties.heart;
