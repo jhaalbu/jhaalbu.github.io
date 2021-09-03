@@ -56,7 +56,7 @@ view.ui.add(elevationProfile, "top-right");
 
 (async () => {
   // read the gpx file and convert it to geojson
-  const response = await fetch("./samle.gpx");
+  const response = await fetch("./hr_gpx_Export.gpx");
   const gpxcontent = await response.text();
   const geojson = gpx(new DOMParser().parseFromString(gpxcontent, "text/xml"));
   const heartRates = geojson.features[0].properties.coordinateProperties.heart;
