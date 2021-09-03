@@ -26,7 +26,7 @@ const view = new SceneView({
       61.95510108,
       8096.99619
     ],
-    heading: 194.07,
+    heading: 359.07,
     tilt: 69.62
   },
   environment: {
@@ -43,7 +43,7 @@ const view = new SceneView({
 const elevationProfile = new ElevationProfile({
   view,
   profiles: [
-    new ElevationProfileLineInput({ color: [245, 203, 66], title: "Bicycle track" }),
+    new ElevationProfileLineInput({ color: [245, 203, 66], title: "Hodlekve rundt" }),
   ],
   visibleElements: {
     selectButton: false,
@@ -78,7 +78,7 @@ view.ui.add(elevationProfile, "top-right");
       }
     },
     listMode: "hide",
-    copyright: "Bicycle track provided by Hugo Campos"
+    copyright: ""
   });
 
   const bikeTrack = new Graphic({
