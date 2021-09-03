@@ -59,7 +59,6 @@ view.ui.add(elevationProfile, "top-right");
   const response = await fetch("./hr_gpx_Export.gpx");
   const gpxcontent = await response.text();
   const geojson = gpx(new DOMParser().parseFromString(gpxcontent, "text/xml"));
-  const heartRates = geojson.features[0].properties.coordinateProperties.heart;
   const coordinates = geojson.features[0].geometry.coordinates;
 
   // add the track as an input for the ElevationProfile widget
@@ -92,69 +91,7 @@ view.ui.add(elevationProfile, "top-right");
   });
   bikeTrackLayer.add(bikeTrack);
 
-  // create a second layer of the bike track
-  // displaying the heart rate on each segment
-  const source = [];
-  // here we sample every second point to get better performance
-  for (let i = 0; i < coordinates.length - 2; i+=2) {
-    const point1 = coordinates[i];
-    const point2 = coordinates[i+2];
-    const heart1 = heartRates[i];
-    const heart2 = heartRates[i+2];
-    const id = i;
-    source.push(getPolyline({
-      point1,
-      point2,
-      heart1,
-      heart2,
-      id
-    }));
-  }
 
-  const heartRateLayer = new FeatureLayer({
-    source: source,
-    objectIdField: "ObjectID",
-    title: "Bicycle track visualized by heart rate",
-    copyright: "Bicycle track provided by Hugo Campos",
-    fields: [{
-      name: "ObjectID",
-      alias: "ObjectID",
-      type: "oid"
-    }, {
-      name: "heartRate",
-      alias: "heartRate",
-      type: "double"
-    }],
-    elevationInfo: {
-      mode: "relative-to-ground",
-      featureExpressionInfo: {
-        expression: "5"
-      }
-    },
-    visible: false,
-    renderer: {
-      type: "simple",
-      symbol: new LineSymbol3D({
-        symbolLayers: [new LineSymbol3DLayer({
-          material: { color: "white" },
-          size: 3,
-          join: "round",
-          cap: "round"
-        })]
-      }),
-      visualVariables: [{
-        type: "color",
-        field: "heartRate",
-        legendOptions: {
-          title: "Heart rate in bpm"
-        },
-        stops: [
-          { value: 130, color:  [255, 208, 0] , label: "<= 130bpm" },
-          { value: 190, color:  [255, 60, 0] , label: ">= 190bpm" }
-        ]
-      }]
-    }
-  });
 
   // create a point layer showing the start and the end points of the track
   const start = coordinates[0];
@@ -214,7 +151,7 @@ view.ui.add(elevationProfile, "top-right");
     }
   });
 
-  map.addMany([bikeTrackLayer, pointsLayer, heartRateLayer]);
+  map.addMany([bikeTrackLayer, pointsLayer]);
 
   const layerList = new LayerList({
     view: view,
@@ -236,20 +173,6 @@ view.ui.add(elevationProfile, "top-right");
 
 })();
 
-function getPolyline(values) {
-  const {point1, point2, heart1, heart2, id} = values;
-  const avgHeartRate = (heart1 + heart2)/2;
-  return {
-    geometry: new Polyline({
-      paths: [[point1, point2]],
-      hasZ: true
-    }),
-    attributes: {
-      ObjectId: id,
-      heartRate: avgHeartRate
-    }
-  };
-}
 
 function getPointSymbol(color) {
   return new PointSymbol3D({
