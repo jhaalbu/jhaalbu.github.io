@@ -126,8 +126,8 @@ view.ui.add(elevationProfile, "top-right");
       z: 1214
     }),
     attributes: {
-      ObjectID: 2,
-      type: "end"
+      ObjectID: 3,
+      type: "kamb"
     }
   };
 
@@ -155,6 +155,10 @@ view.ui.add(elevationProfile, "top-right");
         value: "end",
         symbol: getPointSymbol([168, 8, 8]),
         label: "Mål"
+      }, {
+        value: "kamb",
+        symbol: getPointSymbol([0, 42, 255]),
+        label: "Mellomtid"
       }],
       legendOptions: {
         title: " "
