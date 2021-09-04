@@ -189,7 +189,7 @@ view.ui.add(elevationProfile, "top-right");
         label: "Mellomtid"
       }, {
         value: "drikke",
-        symbol: getPointSymbol([0, 42, 255]),
+        symbol: getPointSymbol([255, 255, 0]),
         label: "Drikkestasjon"
       }],
       legendOptions: {
