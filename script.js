@@ -143,7 +143,7 @@ view.ui.add(elevationProfile, "top-right");
     }
   };
   
-   const helleBerg = {
+   const drikke = {
     geometry: new Point({
       x: 6.9600784,
       y: 61.2881388,
@@ -156,7 +156,7 @@ view.ui.add(elevationProfile, "top-right");
   };
 
   const pointsLayer = new FeatureLayer({
-    source: [startPoint, endPoint, kambaFjell, helleBerg],
+    source: [startPoint, endPoint, kambaFjell, helleBerg, drikke],
     objectIdField: "ObjectID",
     title: "Interessepunkter",
     fields: [{
