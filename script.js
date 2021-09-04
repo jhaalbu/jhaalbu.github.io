@@ -127,14 +127,38 @@ view.ui.add(elevationProfile, "top-right");
     }),
     attributes: {
       ObjectID: 3,
-      type: "kamb"
+      type: "kambafjell"
+    }
+  };
+  
+   const helleBerg = {
+    geometry: new Point({
+      x: 6.9412095,
+      y: 61.2679821,
+      z: 988
+    }),
+    attributes: {
+      ObjectID: 4,
+      type: "helleberg"
+    }
+  };
+  
+   const helleBerg = {
+    geometry: new Point({
+      x: 6.9600784,
+      y: 61.2881388,
+      z: 665
+    }),
+    attributes: {
+      ObjectID: 5,
+      type: "drikke"
     }
   };
 
   const pointsLayer = new FeatureLayer({
-    source: [startPoint, endPoint, kambaFjell],
+    source: [startPoint, endPoint, kambaFjell, helleBerg],
     objectIdField: "ObjectID",
-    title: "Start & arrival points",
+    title: "Interessepunkter",
     fields: [{
       name: "ObjectID",
       alias: "ObjectID",
@@ -156,9 +180,17 @@ view.ui.add(elevationProfile, "top-right");
         symbol: getPointSymbol([168, 8, 8]),
         label: "Mål"
       }, {
-        value: "kamb",
+        value: "kambafjell",
         symbol: getPointSymbol([0, 42, 255]),
         label: "Mellomtid"
+      }, {
+        value: "helleberg",
+        symbol: getPointSymbol([0, 42, 255]),
+        label: "Mellomtid"
+      }, {
+        value: "drikke",
+        symbol: getPointSymbol([0, 42, 255]),
+        label: "Drikkestasjon"
       }],
       legendOptions: {
         title: " "
