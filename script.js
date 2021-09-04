@@ -43,7 +43,7 @@ const view = new SceneView({
 const elevationProfile = new ElevationProfile({
   view,
   profiles: [
-    new ElevationProfileLineInput({ color: [245, 203, 66], title: "Hodlekve rundt" }),
+    new ElevationProfileLineInput({ color: [245, 203, 66], title: "Hodlekve rundt fulldistanse" }),
   ],
   visibleElements: {
     selectButton: false,
@@ -59,7 +59,6 @@ view.ui.add(elevationProfile, "top-right");
   const response = await fetch("./hr_gpx_Export.gpx");
   const gpxcontent = await response.text();
   const geojson = gpx(new DOMParser().parseFromString(gpxcontent, "text/xml"));
-  const heartRates = geojson.features[0].properties.coordinateProperties.heart;
   const coordinates = geojson.features[0].geometry.coordinates;
 
   // add the track as an input for the ElevationProfile widget
@@ -74,7 +73,7 @@ view.ui.add(elevationProfile, "top-right");
     elevationInfo: {
       mode: "relative-to-ground",
       featureExpressionInfo: {
-        expression: "30"
+        expression: "5"
       }
     },
     listMode: "hide",
@@ -119,9 +118,21 @@ view.ui.add(elevationProfile, "top-right");
       type: "end"
     }
   };
+  
+ const kambaFjell = {
+    geometry: new Point({
+      x: 6.9293104,
+      y: 61.2993389,
+      z: 1214
+    }),
+    attributes: {
+      ObjectID: 2,
+      type: "end"
+    }
+  };
 
   const pointsLayer = new FeatureLayer({
-    source: [startPoint, endPoint],
+    source: [startPoint, endPoint, kambaFjell],
     objectIdField: "ObjectID",
     title: "Start & arrival points",
     fields: [{
@@ -139,11 +150,11 @@ view.ui.add(elevationProfile, "top-right");
       uniqueValueInfos: [{
         value: "start",
         symbol: getPointSymbol([108, 235, 184]),
-        label: "Start point"
+        label: "Start"
       }, {
         value: "end",
         symbol: getPointSymbol([168, 8, 8]),
-        label: "Arrival point"
+        label: "Mål"
       }],
       legendOptions: {
         title: " "
