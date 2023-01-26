@@ -1,0 +1,4 @@
+Modul for plotting av klimadata
+-------------------------------
+.. automodule:: klimadata.plot
+    :members:

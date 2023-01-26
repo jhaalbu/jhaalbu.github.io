@@ -1,30 +1,289 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Hodlekve rundt - lang løype</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html class="writer-html5" lang="nb-NO" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="https://js.arcgis.com/4.19/esri/css/main.css">
-    <link rel="stylesheet" href="./style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Dokumentasjon av AV-Klima tjenesten &mdash; AV-Klima  documentation</title>
+  
 
-    <!-- import the webpage's javascript file -->
-    <script
-      defer
-      src="https://unpkg.com/es-module-shims@0.9.0/dist/es-module-shims.js"
-    ></script>
-    <script type="importmap-shim">
-      {
-        "imports": {
-          "esri/": "https://js.arcgis.com/4.19/@arcgis/core/"
-        }
-      }
-    </script>
-    <script src="./script.js" type="module-shim" defer></script>
-  </head>
-  <body>
-    <div id="viewDiv"></div>
-  </body>
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Søk" href="search.html" />
+    <link rel="next" title="Nedhenting og bearbeiding av klimadata modul" href="databearbeiding.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> AV-Klima
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="databearbeiding.html">Nedhenting og bearbeiding av klimadata modul</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotfunksjoner.html">Modul for plotting av klimadata</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">AV-Klima</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Dokumentasjon av AV-Klima tjenesten</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="dokumentasjon-av-av-klima-tjenesten">
+<h1>Dokumentasjon av AV-Klima tjenesten<a class="headerlink" href="#dokumentasjon-av-av-klima-tjenesten" title="Permalink to this heading">¶</a></h1>
+<section id="skildring-av-tjenesten">
+<h2>Skildring av tjenesten<a class="headerlink" href="#skildring-av-tjenesten" title="Permalink to this heading">¶</a></h2>
+<p>Tjenesten er ein web applikasjon for å forenkle uthenting av klimadata. Den nyttar
+seg av eit gridda datasett, dvs eit datasett der det finnes data for kvar 1x1 km rute
+av landet.</p>
+<p>Tjenesten gjer ein spørring til eit NVE API for å hente ut data for ein gitt koordinat. Den
+lager så automatisk til plot med data som er aktuelle i ei skredfarevurdering. Eller andre
+klimanalaysar.</p>
+<p>Lenke til NVE api:</p>
+<p><a class="reference external" href="http://api.nve.no/doc/gridtimeseries-data-gts/">http://api.nve.no/doc/gridtimeseries-data-gts/</a></p>
+<p>Lenke til forklaring for generering av datasett:</p>
+<p><a class="reference external" href="https://senorge.no/Models">https://senorge.no/Models</a></p>
+<p>Der er det vidare henvisning til vitenskaplige artiklar som skildrar metodane i detalj</p>
+</section>
+<section id="bruksanvisning">
+<h2>Bruksanvisning<a class="headerlink" href="#bruksanvisning" title="Permalink to this heading">¶</a></h2>
+<p>Appen er på web med lenke: <a class="reference external" href="https://app-avtools-klima-dev.azurewebsites.net/">https://app-avtools-klima-dev.azurewebsites.net/</a>
+Den har enkelt input med trykk i kart, eller innskriving av koordinat.
+Videre gir den moglegheit for å velje forskjellige type sampleplot</p>
+<p>Klimaoversikt:</p>
+<ol class="arabic simple">
+<li><p>Gjennomsnittleg månedstemperatur og nedbør.</p></li>
+<li><p>Fordeling av snømengde gjennom året, med snitt, max og min sammen med temperatur.</p></li>
+<li><p>Åresnedbør tilbake i tid.</p></li>
+<li><p>Årleg maksimal snødjupne tilbake i tid.</p></li>
+</ol>
+<p>Klimaoversikt med 3 døgn snø og returverdi:</p>
+<p>Dette gir dei samme plotta som for klimaoversikt men i tilleg:</p>
+<ul class="simple">
+<li><p>3 døgns snø mengde</p></li>
+<li><p>Returverdi for 3 døgns snø basert på gumbelfordeling</p></li>
+</ul>
+<p>Dersom ein ynskjer å få verdier plotta ut på plot for gjennomsnittleg måndestemperatur og nedøbr er det mulig å huka av for å vise tall på normalplott</p>
+<p>Dersom ein ynskjer ei vindanalyse for klimapunktet kan ein huke av for å køyre klimanalayse.</p>
+<p>Det blir da lasta ned datasett for vind og følgande plott blir generert:
+- Vindretning for alle</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="databearbeiding.html">Nedhenting og bearbeiding av klimadata modul</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="databearbeiding.html#klimadata.klimadata.hent_data_klima_dogn"><code class="docutils literal notranslate"><span class="pre">hent_data_klima_dogn()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="databearbeiding.html#klimadata.klimadata.hent_hogde"><code class="docutils literal notranslate"><span class="pre">hent_hogde()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="databearbeiding.html#klimadata.klimadata.klima_dataframe"><code class="docutils literal notranslate"><span class="pre">klima_dataframe()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="databearbeiding.html#klimadata.klimadata.maxdf"><code class="docutils literal notranslate"><span class="pre">maxdf()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="databearbeiding.html#klimadata.klimadata.nve_api"><code class="docutils literal notranslate"><span class="pre">nve_api()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="databearbeiding.html#klimadata.klimadata.plot_ekstremverdier_3dsno"><code class="docutils literal notranslate"><span class="pre">plot_ekstremverdier_3dsno()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="databearbeiding.html#klimadata.klimadata.rullande_3dogn_nedbor"><code class="docutils literal notranslate"><span class="pre">rullande_3dogn_nedbor()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="databearbeiding.html#klimadata.klimadata.stedsnavn"><code class="docutils literal notranslate"><span class="pre">stedsnavn()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="databearbeiding.html#klimadata.klimadata.vind_nedbor"><code class="docutils literal notranslate"><span class="pre">vind_nedbor()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="databearbeiding.html#klimadata.klimadata.vind_regn"><code class="docutils literal notranslate"><span class="pre">vind_regn()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="databearbeiding.html#klimadata.klimadata.vind_sno_fsw"><code class="docutils literal notranslate"><span class="pre">vind_sno_fsw()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="databearbeiding.html#klimadata.klimadata.vind_sno_rr_tm"><code class="docutils literal notranslate"><span class="pre">vind_sno_rr_tm()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plotfunksjoner.html">Modul for plotting av klimadata</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plotfunksjoner.html#klimadata.plot.klima_sno_oversikt"><code class="docutils literal notranslate"><span class="pre">klima_sno_oversikt()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotfunksjoner.html#klimadata.plot.klimaoversikt"><code class="docutils literal notranslate"><span class="pre">klimaoversikt()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotfunksjoner.html#klimadata.plot.normaler_annotert"><code class="docutils literal notranslate"><span class="pre">normaler_annotert()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotfunksjoner.html#klimadata.plot.nysnodjupne_3d"><code class="docutils literal notranslate"><span class="pre">nysnodjupne_3d()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotfunksjoner.html#klimadata.plot.plot_aarsnedbor"><code class="docutils literal notranslate"><span class="pre">plot_aarsnedbor()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotfunksjoner.html#klimadata.plot.plot_normaler"><code class="docutils literal notranslate"><span class="pre">plot_normaler()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotfunksjoner.html#klimadata.plot.snodjupne"><code class="docutils literal notranslate"><span class="pre">snodjupne()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotfunksjoner.html#klimadata.plot.snomengde"><code class="docutils literal notranslate"><span class="pre">snomengde()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotfunksjoner.html#klimadata.plot.vind"><code class="docutils literal notranslate"><span class="pre">vind()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Modulindex</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Søkeside</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="databearbeiding.html" class="btn btn-neutral float-right" title="Nedhenting og bearbeiding av klimadata modul" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
 </html>
